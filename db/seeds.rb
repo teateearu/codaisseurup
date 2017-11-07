@@ -25,8 +25,8 @@ event1 = Event.create!(
   capacity: 15,
   includes_food: false,
   includes_drinks: true,
-  starts_at: (011220171200),
-  ends_at: (021220171300),
+  starts_at: DateTime.new(2017,12,01,12,00,00),
+  ends_at: DateTime.new(2017,12,02,13,00,00),
   active: true,
   user: arno
 )
@@ -39,8 +39,8 @@ event2 = Event.create!(
   capacity: 50,
   includes_food: true,
   includes_drinks: true,
-  starts_at: (201220171500),
-  ends_at: (211220171600),
+  starts_at: DateTime.new(2017,12,20,15,00,00),
+  ends_at: DateTime.new(2017,12,21,16,00,00),
   active: true,
   user: miriam
 )

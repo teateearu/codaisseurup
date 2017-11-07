@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107151721) do
+ActiveRecord::Schema.define(version: 20171107160443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,23 @@ ActiveRecord::Schema.define(version: 20171107151721) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "events_categories", id: false, force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "category_id", null: false
+    t.index ["event_id", "category_id"], name: "index_events_categories_on_event_id_and_category_id"
+    t.index ["event_id", "category_id"], name: "index_rooms_events_on_category_id_and_event_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.text "bio"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "rooms_themes", id: false, force: :cascade do |t|
     t.bigint "room_id", null: false
     t.bigint "theme_id", null: false
@@ -63,4 +80,5 @@ ActiveRecord::Schema.define(version: 20171107151721) do
   end
 
   add_foreign_key "events", "users"
+  add_foreign_key "profiles", "users"
 end
