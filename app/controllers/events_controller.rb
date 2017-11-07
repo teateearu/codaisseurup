@@ -3,10 +3,12 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
 
   def index
-    @events = current_event.rooms
+    @events = current_user.events
   end
 
-  def show; end
+  def show
+    @categories = @event.categories
+  end
 
   def new
     @event = current_user.events.build
