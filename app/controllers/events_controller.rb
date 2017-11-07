@@ -34,6 +34,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def event_params
+    params.require(:event).permit(category_ids: [])
+  end
+
   private
 
   def set_room
