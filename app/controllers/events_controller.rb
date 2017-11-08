@@ -35,7 +35,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(category_ids: [])
+    params.require(:event).permit('', category_ids: [])
   end
 
   private

@@ -26,13 +26,14 @@
       <li><%= !@event.includes_drinks ? ("<del>Drinks</del>").html_safe : "Drinks" %></li>
     </ul>
 
+    <p><h4>Categories</h4></p>
+    <p><% @categories.each do |category| %></p>
+    <p>  <span class="label label-success"><%= category.name %></span></p>
+    <p><% end %></p>
   </div>
 
 </div>
 
-<h4>Categories</h4>
-<% @categories.each do |category| %>
-  <span class="label label-success"><%= category.name %></span>
-<% end %>
+
 
 <%= link_to "Back", events_path, class: "btn btn-default" %>

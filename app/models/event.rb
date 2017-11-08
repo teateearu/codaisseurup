@@ -28,6 +28,14 @@ class Event < ApplicationRecord
      def startdate_before_enddate?
        ends_at - starts_at >= 1
      end
+
+     def self.order_by_price
+       order :price
+     end
+
+     def bargain?
+       price < 10
+     end
   # inclusion: { in: (:starts_at+24.hours) }, after: :starts_at + 24.hours
     # validate :starts_at_before_ends_at
 
