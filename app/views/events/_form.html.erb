@@ -1,12 +1,9 @@
-
-
 <%= form_for @event, html: { multipart: true } do |f| %>
+
   <div class="form-group">
-    <label>Event name</label>
+    <label>Name</label>
     <%= f.text_field :name, placeholder: "Event name", class: "form-control" %>
   </div>
-  <label>Events</label>
-
 
   <div class="form-group">
     <label>Description</label>
@@ -15,17 +12,8 @@
 
   <div class="form-group">
     <label>Location</label>
-    <%= f.text_field :location, placeholder: "Location of the event", class: "form-control" %>
+    <%= f.text_field :location, placeholder: "Location", class: "form-control" %>
   </div>
-
-  <label>Food / drinks</label>
-
-  <div class="form-group">
-    <%= f.check_box :includes_food %> Food
-  </div>
-  <div class="form-group">
-    <%= f.check_box :includes_drinks %> Drinks
-
 
   <div class="form-group">
     <label>Price</label>
@@ -36,40 +24,57 @@
   </div>
 
   <div class="form-group">
-    <label>Starts at</label>
-    <div class="input-group">
-      <div class="input-group-addon"></div>
-      <%= f.number_field :starts_at, placeholder: "eg. yyyymmddhhmmss", class: "form-control" %>
-    </div>
+    <label>Number of Guests</label>
+    <%= f.select :capacity, [["10", 10], ["20", 20], ["30", 30], ["40", 40], ["50", 50], ["60", 60], ["70", 70], ["80", 80], ["90", 90], ["100", 100]], prompt: "Select number of guests", class: "form-control" %>
   </div>
+
+  <div class="form-group">
+    <label>Starts at</label>
+    <%= f.datetime_select :starts_at %>
+  </div>
+
   <div class="form-group">
     <label>Ends at</label>
-    <div class="input-group">
-      <div class="input-group-addon"></div>
-      <%= f.number_field :ends_at, placeholder: "eg. yyyymmddhhmmss", class: "form-control" %>
-    </div>
-    <div>
-      <p><label>Categories</label></p>
-
-<p><%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %></p>
-  <p><div class="form-group"></p>
-  <p>  <%= b.check_box(class: "check_box") %> <%= b.object.name %></p>
-  <p></div></p>
-<p><% end %></p>
-
-<label>Photos</label>
-<div id="photos">
-<%= render 'photos/list' %>
-</div>
-<div class="form-group">
-  <span class="btn btn-default">
-    Upload Photos
-    <%= file_field_tag "images[]", type: :file, multiple: true %>
-  </span>
-
-</div>
-    </div>
+    <%= f.datetime_select :ends_at %>
   </div>
+
+  <hr>
+
+  <label>Food / drinks</label>
+
+  <div class="form-group">
+    <%= f.check_box :includes_food %> Food
+  </div>
+  <div class="form-group">
+    <%= f.check_box :includes_drinks %> Drinks
+  </div>
+
+  <hr>
+
+  <label>Categories</label>
+
+  <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+    <div class="form-group">
+      <%= b.check_box(class: "check_box") %> <%= b.object.name %>
+    </div>
+  <% end %>
+
+  <hr>
+
+  <label>Photos</label>
+
+  <div class="form-group">
+    <span class="btn btn-default">
+      Upload Photos
+      <%= file_field_tag "images[]", type: :file, multiple: true %>
+    </span>
+  </div>
+
+  <div id="photos">
+    <%= render 'photos/list' %>
+  </div>
+
+  <hr>
 
   <label>Publish this event?</label>
 
@@ -78,6 +83,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Save", class: "btn btn-primary" %>
+    <%= f.submit "Save", class: "btn btn-success" %>
   </div>
 <% end %>

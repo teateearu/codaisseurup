@@ -3,21 +3,22 @@
 
   <div class="panel-body">
 
+
     <p>Location: <%= @event.location %></p>
     <p>User email: <%= @event.user.email %></p>
 
     <!-- Main Info -->
     <h4>Main Info</h4>
     <p>Event name: <%= @event.name %></p>
-    <p><%= @event.capacity %> <%= @event.capacity  %></p>
+    <p>Capacity: <%= @event.capacity %> people</p>
 
     <!-- About -->
     <h4>About</h4>
     <p><%= @event.description %></p>
-    <p>Location:<%= @event.location %></p>
-    <p>Price:<%=  @event.price %></p>
-    <p>Starts at:<%=  @event.starts_at %></p>
-    <p>Ends at:<%=  @event.ends_at %></p>
+    <p>Location: <%= @event.location %></p>
+    <p>Price: <%=  @event.price %></p>
+    <p>Starts at: <%=  @event.starts_at %></p>
+    <p>Ends at: <%=  @event.ends_at %></p>
 
     <!-- Amenities -->
     <h4>Other</h4>
@@ -26,24 +27,23 @@
       <li><%= !@event.includes_drinks ? ("<del>Drinks</del>").html_safe : "Drinks" %></li>
     </ul>
 
-    <!-- Photos -->
-    <h4>Photos</h4>
-    <% @event.photos.each do |photo| %>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <%= image_tag photo.image.thumbnail %>
-      </div>
-    </div>
-    <% end %>
-
-    <p><h4>Categories</h4></p>
+    <!-- Categories -->
+    <h4>Categories</h4>
     <% @categories.each do |category| %>
       <span class="label label-success"><%= category.name %></span>
     <% end %>
-  </div>
 
+    <!-- Photos -->
+    <h4>Photos</h4>
+    <% @photos.each do |photo| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <%= image_tag photo.image.thumbnail %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-
-
 <%= link_to "Back", events_path, class: "btn btn-default" %>
+<%= link_to "Update", edit_event_path(@event), class: "btn btn-default" %>

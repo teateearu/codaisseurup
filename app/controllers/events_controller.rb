@@ -40,8 +40,8 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       image_params.each do |image|
       @event.photos.create(image: image)
-      end
-      redirect_to @event, notice: "Event updated"
+    end
+      redirect_to edit_event_path(@event), notice: "Event updated"
     else
       render :edit
     end
@@ -49,7 +49,7 @@ class EventsController < ApplicationController
 
 
   def event_params
-    params.require(:event).permit('', category_ids: [])
+    params.require(:event).permit(:name, :description, :location, :price, :capacity, :includes_food, :includes_drinks, :starts_at, :ends_at, :active, category_ids: [])
   end
 
   private
@@ -62,12 +62,4 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def event_params
-    params
-      .require(:event)
-      .permit(
-        :name, :description, :location, :price, :capacity, :includes_food,
-        :includes_drinks, :starts_at, :ends_at, :active
-      )
-  end
 end
