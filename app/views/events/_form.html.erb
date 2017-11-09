@@ -1,6 +1,6 @@
 
 
-<%= form_for @event do |f| %>
+<%= form_for @event, html: { multipart: true } do |f| %>
   <div class="form-group">
     <label>Event name</label>
     <%= f.text_field :name, placeholder: "Event name", class: "form-control" %>
@@ -57,7 +57,17 @@
   <p></div></p>
 <p><% end %></p>
 
+<label>Photos</label>
+<div id="photos">
+<%= render 'photos/list' %>
+</div>
+<div class="form-group">
+  <span class="btn btn-default">
+    Upload Photos
+    <%= file_field_tag "images[]", type: :file, multiple: true %>
+  </span>
 
+</div>
     </div>
   </div>
 
