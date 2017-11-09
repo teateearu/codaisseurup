@@ -9,6 +9,8 @@ ruby '2.4.1'
 
 gem 'carrierwave', '0.11.2'
 
+gem 'cloudinary', '1.2.3'
+
 gem 'rails_12factor', group: :production
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
