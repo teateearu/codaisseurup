@@ -5,7 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Photo.destroy_all
 Category.destroy_all
+Event.destroy_all
+Profile.destroy_all
 User.destroy_all
 
 business_meeting = Category.create(name: "Business Meeting")
@@ -44,3 +47,8 @@ event2 = Event.create!(
   active: true,
   user: miriam
 )
+
+photo1 = Photo.create!(remote_image_url: "http://res.cloudinary.com/teateearu/image/upload/v1510230523/the_office_season_1_cast_odyiic.jpg", event: event1)
+photo2 = Photo.create!(remote_image_url: "http://res.cloudinary.com/teateearu/image/upload/v1510226619/what-you-didn-t-miss-in-the-meeting-1105922-TwoByOne_lbk8qo.jpg", event: event1)
+photo3 = Photo.create!(remote_image_url: "http://res.cloudinary.com/teateearu/image/upload/v1510227107/0_oQWf4dfKfJVuKFPC._nt4knc.png", event: event2)
+photo4 = Photo.create!(remote_image_url: "http://res.cloudinary.com/teateearu/image/upload/v1510226733/c104c63a748530d5e52b514fc10eeaa2-11_aexiyt.jpg", event: event2)
