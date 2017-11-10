@@ -1,3 +1,4 @@
+Registration.destroy_all
 Photo.destroy_all
 Category.destroy_all
 Event.destroy_all
@@ -59,3 +60,8 @@ photo3 = Photo.create!(remote_image_url: "http://res.cloudinary.com/teateearu/im
 photo4 = Photo.create!(remote_image_url: "http://res.cloudinary.com/teateearu/image/upload/v1510226733/c104c63a748530d5e52b514fc10eeaa2-11_aexiyt.jpg", event: event2)
 
 puts "#{Photo.all.size} photos created"
+
+## registrations
+
+Registration.create!(event: event1, user: wouter, price: event.price, guests_count: 1)
+Registration.create!(event: event1, user: matt, price: event.price, guests_count: 2)

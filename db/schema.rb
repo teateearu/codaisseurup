@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171109105016) do
+ActiveRecord::Schema.define(version: 20171110094843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,18 @@ ActiveRecord::Schema.define(version: 20171109105016) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "registrations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.boolean "status"
+    t.decimal "price"
+    t.decimal "guests_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_registrations_on_event_id"
+    t.index ["user_id"], name: "index_registrations_on_user_id"
+  end
+
   create_table "rooms_themes", id: false, force: :cascade do |t|
     t.bigint "room_id", null: false
     t.bigint "theme_id", null: false
@@ -97,4 +109,6 @@ ActiveRecord::Schema.define(version: 20171109105016) do
   add_foreign_key "events", "users"
   add_foreign_key "photos", "events"
   add_foreign_key "profiles", "users"
+  add_foreign_key "registrations", "events"
+  add_foreign_key "registrations", "users"
 end
