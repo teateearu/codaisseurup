@@ -23,6 +23,10 @@ class Event < ApplicationRecord
       order :price
     end
 
+    def self.alphabetical
+      order(name: :asc)
+    end
+
     def bargain?
       price < 10
     end

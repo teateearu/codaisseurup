@@ -48,5 +48,16 @@
   </div>
 </div>
 
+<!-- Registration Form -->
+<% if current_user != @event.user %>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Register for this event</div>
+
+    <div class="panel-body">
+      <%= render 'registrations/form' %>
+    </div>
+  </div>
+<% end %>
+
 <%= link_to "Back", events_path, class: "btn btn-default" %>
 <%= link_to "Update", edit_event_path(@event), class: "btn btn-default" %>
