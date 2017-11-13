@@ -9,6 +9,10 @@ class EventsController < ApplicationController
   def show
     @categories = @event.categories
     @photos = @event.photos
+    event = Event.find(params[:id])
+    render status: 200, json: event.as_json(include: :registrations)
+  end
+
   end
 
   def new

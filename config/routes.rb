@@ -12,9 +12,11 @@ Rails.application.routes.draw do
   resources :registrations, only: [:create]
 end
 
-namespace :api do
-  resources :events
-end
+  namespace :api do
+    resources :events do
+      resources :registrations, only: [:create, :update, :destroy]
+    end
+  end
 
   get "about" => "pages#about"
 end

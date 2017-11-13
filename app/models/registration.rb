@@ -1,5 +1,5 @@
 class Registration < ApplicationRecord
-  belongs_to :users
+  belongs_to :user, optional: true
   belongs_to :events
 
     def set_status
